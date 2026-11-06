@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -253,8 +252,6 @@ section { padding: 80px 9%; }
     color: var(--brown);
     font-size: 14px;
 }
-
-/* ENGLISH AUDIO GUIDE */
 
 .audio {
     background: var(--brown);
@@ -582,8 +579,6 @@ footer span { color: var(--gold); }
     </div>
 </section>
 
-<!-- ENGLISH AUDIO GUIDE -->
-
 <section class="audio" id="audio">
     <div class="section-subtitle">Listen and Discover</div>
     <h2 class="section-title">Audio Guide</h2>
@@ -597,7 +592,7 @@ footer span { color: var(--gold); }
         <button class="stop" onclick="stopAudio()">■ Stop</button>
     </div>
 
-    <div id="speechStatus">
+    <div id="speechStatus" aria-live="polite">
         Press Play to listen to the Hampi audio guide.
     </div>
 </section>
@@ -612,164 +607,67 @@ footer span { color: var(--gold); }
         <p>
             Experience historical monuments through an interactive
             Augmented Reality experience. Scan a supported heritage
-            image to explore a digital 3D monument.
+            image to explore a digital 3D monument model.
         </p>
 
-        <button onclick="showARMessage()">Explore in AR</button>
+        <button onclick="showARMessage()">OPEN AR SCANNER</button>
 
-        <p id="arMessage" style="margin-top:18px; color:#8b6540;"></p>
+        <p id="arMessage" style="margin-top:15px;font-size:13px;color:#956b35;">
+            AR application connection is not configured yet.
+        </p>
     </div>
 </section>
 
 <footer>
-    <p><span>Virtual Heritage Explorer</span></p>
-    <p>Preserving the past through digital innovation.</p>
-    <p>© 2026 Virtual Heritage Explorer | Hampi, Karnataka</p>
+    <span>VIRTUAL HERITAGE EXPLORER</span>
+    <p>Discover the past. Experience the present. Preserve the future.</p>
+    <p><a href="index.html" style="color:var(--gold);">← Back to Home</a></p>
+    <p>© 2026 Virtual Heritage Explorer</p>
 </footer>
 
 <script>
+const heritageAudio = new Audio("audio/hampi.mp3");
+heritageAudio.preload = "auto";
 
-// ENGLISH HAMPI AUDIO GUIDE
-
-const narration = "Welcome to Hampi, the historic capital of the Vijayanagara Empire. Hampi flourished as a centre of trade, culture, religion and architecture. It is famous for the Virupaksha Temple, Vittala Temple and its magnificent stone chariot. The ruins of Hampi preserve the legacy of a powerful kingdom and its remarkable artistic achievements. The Vijayanagara Empire was founded in 1336 by Harihara I and Bukka Raya I. Under rulers such as Krishnadevaraya, Hampi became an important centre of trade, religion and culture. Following the Battle of Talikota in 1565, the city suffered extensive destruction. Today, Hampi is recognised as a UNESCO World Heritage Site and continues to attract visitors from around the world.";
-
-let currentUtterance = null;
-let requestNumber = 0;
+const audioStatus = document.getElementById("speechStatus");
 
 function playAudio() {
+    audioStatus.textContent = "Loading Hampi audio guide...";
 
-    const status = document.getElementById("speechStatus");
-
-    if (!("speechSynthesis" in window) ||
-        !("SpeechSynthesisUtterance" in window)) {
-
-        status.textContent =
-            "Your browser does not support speech playback. Please try an updated browser.";
-
-        return;
-    }
-
-    const thisRequest = ++requestNumber;
-
-    window.speechSynthesis.cancel();
-
-    status.textContent = "Preparing English audio...";
-
-    const speak = () => {
-
-        if (thisRequest !== requestNumber) return;
-
-        const voices = window.speechSynthesis.getVoices();
-
-        // Find an available English voice.
-        // If unavailable, use the system default voice.
-
-        const englishVoice = voices.find(voice =>
-            voice.lang &&
-            voice.lang.toLowerCase().startsWith("en")
-        );
-
-        const utterance = new SpeechSynthesisUtterance(narration);
-
-        if (englishVoice) {
-            utterance.voice = englishVoice;
-            utterance.lang = englishVoice.lang;
-        } else {
-            utterance.lang = "en";
-        }
-
-        utterance.rate = 0.9;
-        utterance.pitch = 1;
-        utterance.volume = 1;
-
-        utterance.onstart = () => {
-
-            if (thisRequest !== requestNumber) return;
-
-            status.textContent =
-                "Playing Hampi audio guide...";
-        };
-
-        utterance.onend = () => {
-
-            if (thisRequest !== requestNumber) return;
-
-            status.textContent =
-                "Audio guide completed.";
-        };
-
-        utterance.onerror = (event) => {
-
-            if (thisRequest !== requestNumber) return;
-
-            if (event.error !== "canceled" &&
-                event.error !== "interrupted") {
-
-                status.textContent =
-                    "Audio playback error. Please check your browser settings or try another browser.";
-            }
-        };
-
-        currentUtterance = utterance;
-
-        window.speechSynthesis.speak(utterance);
-    };
-
-    const voices = window.speechSynthesis.getVoices();
-
-    if (voices.length > 0) {
-
-        speak();
-
-    } else {
-
-        window.speechSynthesis.onvoiceschanged = () => {
-
-            window.speechSynthesis.onvoiceschanged = null;
-
-            speak();
-        };
-
-        window.setTimeout(() => {
-
-            if (thisRequest === requestNumber &&
-                !window.speechSynthesis.speaking) {
-
-                speak();
-            }
-
-        }, 1000);
-    }
+    heritageAudio.play()
+        .then(() => {
+            audioStatus.textContent = "Playing Hampi audio guide...";
+        })
+        .catch((error) => {
+            console.error("Audio error:", error);
+            audioStatus.textContent =
+                "Unable to play audio. Please try again.";
+        });
 }
 
 function stopAudio() {
-
-    requestNumber++;
-
-    if ("speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-    }
-
-    currentUtterance = null;
-
-    document.getElementById("speechStatus").textContent =
-        "Audio guide stopped.";
+    heritageAudio.pause();
+    heritageAudio.currentTime = 0;
+    audioStatus.textContent = "Audio guide stopped.";
 }
 
-function showARMessage() {
+heritageAudio.addEventListener("ended", () => {
+    audioStatus.textContent = "Audio guide completed.";
+});
 
+heritageAudio.addEventListener("error", () => {
+    audioStatus.textContent =
+        "Audio file could not be loaded. Please check the audio folder.";
+});
+
+function showARMessage() {
     document.getElementById("arMessage").textContent =
         "AR integration will open here once the Unity application is connected.";
 }
 
-window.addEventListener("beforeunload", () => {
-
-    if ("speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-    }
-
+window.addEventListener("pagehide", () => {
+    heritageAudio.pause();
 });
-
 </script>
 
 </body>
