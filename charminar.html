@@ -22,7 +22,9 @@
     box-sizing:border-box;
 }
 
-html { scroll-behavior:smooth; }
+html {
+    scroll-behavior:smooth;
+}
 
 body {
     background:var(--cream);
@@ -30,7 +32,9 @@ body {
     font-family:'DM Sans',sans-serif;
 }
 
-a { text-decoration:none; }
+a {
+    text-decoration:none;
+}
 
 header {
     background:var(--dark);
@@ -66,7 +70,9 @@ nav a {
     font-size:13px;
 }
 
-nav a:hover { color:var(--gold); }
+nav a:hover {
+    color:var(--gold);
+}
 
 .hero {
     min-height:580px;
@@ -81,7 +87,9 @@ nav a:hover { color:var(--gold); }
     color:white;
 }
 
-.hero-content { max-width:700px; }
+.hero-content {
+    max-width:700px;
+}
 
 .eyebrow {
     color:var(--gold);
@@ -116,9 +124,13 @@ nav a:hover { color:var(--gold); }
     cursor:pointer;
 }
 
-.button:hover { background:white; }
+.button:hover {
+    background:white;
+}
 
-section { padding:75px 9%; }
+section {
+    padding:75px 9%;
+}
 
 .small-heading {
     color:#a8793d;
@@ -177,7 +189,9 @@ h2 {
     box-shadow:0 10px 30px #0002;
 }
 
-.architecture { background:#efe2cf; }
+.architecture {
+    background:#efe2cf;
+}
 
 .architecture-content {
     max-width:850px;
@@ -240,7 +254,9 @@ h2 {
     color:white;
 }
 
-.audio-section h2 { color:var(--gold); }
+.audio-section h2 {
+    color:var(--gold);
+}
 
 .audio-section p {
     color:#e5d6c5;
@@ -272,8 +288,14 @@ h2 {
     font-weight:bold;
 }
 
-.play { background:var(--gold); }
-.stop { background:white;color:var(--dark); }
+.play {
+    background:var(--gold);
+}
+
+.stop {
+    background:white;
+    color:var(--dark);
+}
 
 .audio-status {
     margin-top:18px;
@@ -296,7 +318,10 @@ h2 {
     box-shadow:0 8px 30px #0001;
 }
 
-.ar-icon { font-size:55px;margin-bottom:15px; }
+.ar-icon {
+    font-size:55px;
+    margin-bottom:15px;
+}
 
 .ar-box p {
     color:var(--muted);
@@ -308,6 +333,24 @@ h2 {
     font-size:12px;
     color:#956b35;
     margin-top:12px;
+    line-height:1.7;
+}
+
+.ar-button {
+    margin-top:20px;
+    padding:15px 28px;
+    background:var(--gold);
+    color:var(--dark);
+    border:none;
+    border-radius:5px;
+    font-weight:bold;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.ar-button:hover {
+    background:var(--dark);
+    color:white;
 }
 
 footer {
@@ -329,10 +372,14 @@ footer p {
     line-height:2;
 }
 
-footer a { color:var(--gold); }
+footer a {
+    color:var(--gold);
+}
 
 @media(max-width:900px) {
-    .gallery { grid-template-columns:repeat(2,1fr); }
+    .gallery {
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 
 @media(max-width:750px) {
@@ -346,15 +393,27 @@ footer a { color:var(--gold); }
         gap:13px;
     }
 
-    .history { grid-template-columns:1fr; }
+    .history {
+        grid-template-columns:1fr;
+    }
 
-    .facts { grid-template-columns:repeat(2,1fr); }
+    .facts {
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 
 @media(max-width:500px) {
-    .gallery { grid-template-columns:1fr; }
-    .gallery-item img { height:260px; }
-    section { padding:55px 6%; }
+    .gallery {
+        grid-template-columns:1fr;
+    }
+
+    .gallery-item img {
+        height:260px;
+    }
+
+    section {
+        padding:55px 6%;
+    }
 }
 </style>
 </head>
@@ -362,6 +421,7 @@ footer a { color:var(--gold); }
 <body>
 
 <header>
+
     <a href="index.html" class="logo">
         VIRTUAL HERITAGE
         <span>EXPLORER · INDIA</span>
@@ -374,11 +434,19 @@ footer a { color:var(--gold); }
         <a href="#audio">Audio Guide</a>
         <a href="#ar">AR Experience</a>
     </nav>
+
 </header>
 
+
+<!-- HERO -->
+
 <section class="hero">
+
     <div class="hero-content">
-        <div class="eyebrow">HYDERABAD · TELANGANA · INDIA</div>
+
+        <div class="eyebrow">
+            HYDERABAD · TELANGANA · INDIA
+        </div>
 
         <h1>Charminar</h1>
 
@@ -389,21 +457,55 @@ footer a { color:var(--gold); }
             the rich history and cultural identity of the city.
         </p>
 
-        <a href="#history" class="button">DISCOVER ITS HISTORY →</a>
+        <a href="#history" class="button">
+            DISCOVER ITS HISTORY →
+        </a>
+
     </div>
+
 </section>
 
+
+<!-- FACTS -->
+
 <div class="facts">
-    <div class="fact"><h3>1591</h3><p>Built in 1591</p></div>
-    <div class="fact"><h3>4</h3><p>Grand Minarets</p></div>
-    <div class="fact"><h3>Qutb Shahi</h3><p>Dynasty</p></div>
-    <div class="fact"><h3>Hyderabad</h3><p>Telangana, India</p></div>
+
+    <div class="fact">
+        <h3>1591</h3>
+        <p>Built in 1591</p>
+    </div>
+
+    <div class="fact">
+        <h3>4</h3>
+        <p>Grand Minarets</p>
+    </div>
+
+    <div class="fact">
+        <h3>Qutb Shahi</h3>
+        <p>Dynasty</p>
+    </div>
+
+    <div class="fact">
+        <h3>Hyderabad</h3>
+        <p>Telangana, India</p>
+    </div>
+
 </div>
 
+
+<!-- HISTORY -->
+
 <section class="history" id="history">
+
     <div>
-        <div class="small-heading">THE STORY BEHIND THE MONUMENT</div>
-        <h2>The Icon of Hyderabad</h2>
+
+        <div class="small-heading">
+            THE STORY BEHIND THE MONUMENT
+        </div>
+
+        <h2>
+            The Icon of Hyderabad
+        </h2>
 
         <p class="description">
             Charminar is one of the most recognised historical
@@ -421,18 +523,30 @@ footer a { color:var(--gold); }
             The monument stands as an important symbol of
             Hyderabad's history, culture and architectural heritage.
         </p>
+
     </div>
 
     <img
         src="https://commons.wikimedia.org/wiki/Special:FilePath/Char%20Minar%20at%20noon%2C%20Hyderabad.jpg"
         alt="Charminar monument"
         loading="lazy">
+
 </section>
 
+
+<!-- ARCHITECTURE -->
+
 <section class="architecture">
+
     <div class="architecture-content">
-        <div class="small-heading">DESIGN & ARCHITECTURE</div>
-        <h2>Four Towers, One Timeless Legacy</h2>
+
+        <div class="small-heading">
+            DESIGN & ARCHITECTURE
+        </div>
+
+        <h2>
+            Four Towers, One Timeless Legacy
+        </h2>
 
         <p>
             Charminar is known for its four grand minarets,
@@ -449,79 +563,156 @@ footer a { color:var(--gold); }
             photographers and history enthusiasts from across
             the world.
         </p>
+
     </div>
+
 </section>
 
+
+<!-- GALLERY -->
+
 <section id="gallery">
+
     <div class="gallery-heading">
-        <div class="small-heading">VISUAL JOURNEY</div>
-        <h2>Charminar Gallery</h2>
-        <p>Explore different views of the iconic Charminar monument.</p>
+
+        <div class="small-heading">
+            VISUAL JOURNEY
+        </div>
+
+        <h2>
+            Charminar Gallery
+        </h2>
+
+        <p>
+            Explore different views of the iconic Charminar monument.
+        </p>
+
     </div>
 
     <div class="gallery">
+
         <div class="gallery-item">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Charminar%20Front.jpg" alt="Charminar front view" loading="lazy">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Charminar%20Front.jpg"
+                alt="Charminar front view"
+                loading="lazy">
             <h3>Charminar Front View</h3>
         </div>
 
         <div class="gallery-item">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/A%20view%20of%20Charminar%20during%20sunrise.jpg" alt="Charminar sunrise" loading="lazy">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/A%20view%20of%20Charminar%20during%20sunrise.jpg"
+                alt="Charminar sunrise"
+                loading="lazy">
             <h3>Charminar at Sunrise</h3>
         </div>
 
         <div class="gallery-item">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/A%20Rainy%20Morning%2C%20Charminar.jpg" alt="Charminar rainy morning" loading="lazy">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/A%20Rainy%20Morning%2C%20Charminar.jpg"
+                alt="Charminar rainy morning"
+                loading="lazy">
             <h3>Rainy Morning View</h3>
         </div>
 
         <div class="gallery-item">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Charminar%20Evening%20View%20Hyderabad.jpg" alt="Charminar evening" loading="lazy">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Charminar%20Evening%20View%20Hyderabad.jpg"
+                alt="Charminar evening"
+                loading="lazy">
             <h3>Charminar in the Evening</h3>
         </div>
 
         <div class="gallery-item">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/A%20worm%27s%20eye%20view%20of%20the%20Charminar.jpg" alt="Charminar minarets" loading="lazy">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/A%20worm%27s%20eye%20view%20of%20the%20Charminar.jpg"
+                alt="Charminar minarets"
+                loading="lazy">
             <h3>Four Grand Minarets</h3>
         </div>
 
         <div class="gallery-item">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Charminar%20at%20Dusk.jpg" alt="Charminar at dusk" loading="lazy">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Charminar%20at%20Dusk.jpg"
+                alt="Charminar at dusk"
+                loading="lazy">
             <h3>Charminar at Dusk</h3>
         </div>
+
     </div>
 
     <p style="text-align:center;margin-top:25px;font-size:12px;color:#796b5d;">
+
         Photographs sourced from
-        <a href="https://commons.wikimedia.org/wiki/Category:Charminar" target="_blank" style="color:#956b35;">
+
+        <a
+            href="https://commons.wikimedia.org/wiki/Category:Charminar"
+            target="_blank"
+            style="color:#956b35;">
             Wikimedia Commons
         </a>.
+
     </p>
+
 </section>
 
+
+<!-- AUDIO -->
+
 <section class="audio-section" id="audio">
-    <div class="small-heading">LISTEN & LEARN</div>
-    <h2>Audio Guide</h2>
-    <p>Listen to the history of Charminar in English.</p>
+
+    <div class="small-heading">
+        LISTEN & LEARN
+    </div>
+
+    <h2>
+        Audio Guide
+    </h2>
+
+    <p>
+        Listen to the history of Charminar in English.
+    </p>
 
     <div class="audio-box">
+
         <div class="audio-buttons">
-            <button class="play" onclick="playGuide()">▶ Play Audio Guide</button>
-            <button class="stop" onclick="stopGuide()">■ Stop</button>
+
+            <button class="play" onclick="playGuide()">
+                ▶ Play Audio Guide
+            </button>
+
+            <button class="stop" onclick="stopGuide()">
+                ■ Stop
+            </button>
+
         </div>
 
         <p class="audio-status" id="audioStatus" aria-live="polite">
             Press Play to listen to the Charminar audio guide.
         </p>
+
     </div>
+
 </section>
 
+
+<!-- AR -->
+
 <section class="ar-section" id="ar">
-    <div class="small-heading">IMMERSIVE TECHNOLOGY</div>
-    <h2>Explore Charminar in Augmented Reality</h2>
+
+    <div class="small-heading">
+        IMMERSIVE TECHNOLOGY
+    </div>
+
+    <h2>
+        Explore Charminar in Augmented Reality
+    </h2>
 
     <div class="ar-box">
-        <div class="ar-icon">🏛️</div>
+
+        <div class="ar-icon">
+            🏛️
+        </div>
 
         <h3 style="font-family:'Cinzel',serif;color:#48251c;margin-bottom:15px;">
             AR Heritage Scanner
@@ -529,68 +720,153 @@ footer a { color:var(--gold); }
 
         <p>
             Experience Charminar through augmented reality.
-            Scan the designated heritage image to explore
-            its digital 3D monument model.
+            Tap the button below to open the Unity AR application
+            and explore the Charminar 3D model.
         </p>
 
-        <button class="button" onclick="showARMessage()">OPEN AR SCANNER</button>
+        <!-- UNITY AR BUTTON -->
+
+        <button class="ar-button" onclick="openCharminarAR()">
+            📱 OPEN CHARMINAR AR
+        </button>
 
         <div class="ar-status" id="arStatus">
-            AR application connection is not configured yet.
+            Tap the button to launch the Charminar AR application.
         </div>
+
     </div>
+
 </section>
 
+
+<!-- FOOTER -->
+
 <footer>
-    <h3>VIRTUAL HERITAGE EXPLORER</h3>
-    <p>Discover the past. Experience the present. Preserve the future.</p>
-    <p style="margin-top:15px;"><a href="index.html">← Back to Home</a></p>
-    <p style="margin-top:15px;">© 2026 Virtual Heritage Explorer</p>
+
+    <h3>
+        VIRTUAL HERITAGE EXPLORER
+    </h3>
+
+    <p>
+        Discover the past. Experience the present.
+        Preserve the future.
+    </p>
+
+    <p style="margin-top:15px;">
+        <a href="index.html">
+            ← Back to Home
+        </a>
+    </p>
+
+    <p style="margin-top:15px;">
+        © 2026 Virtual Heritage Explorer
+    </p>
+
 </footer>
 
+
 <script>
+
+/* =========================
+   AUDIO GUIDE
+========================= */
+
 const heritageAudio = new Audio("audio/charminar.mp3");
+
 heritageAudio.preload = "auto";
 
-const audioStatus = document.getElementById("audioStatus");
+const audioStatus =
+    document.getElementById("audioStatus");
 
 function playGuide() {
-    audioStatus.textContent = "Loading Charminar audio guide...";
+
+    audioStatus.textContent =
+        "Loading Charminar audio guide...";
 
     heritageAudio.play()
         .then(() => {
-            audioStatus.textContent = "Playing Charminar audio guide...";
+
+            audioStatus.textContent =
+                "Playing Charminar audio guide...";
+
         })
         .catch((error) => {
+
             console.error("Audio error:", error);
+
             audioStatus.textContent =
                 "Unable to play audio. Please try again.";
+
         });
 }
 
 function stopGuide() {
+
     heritageAudio.pause();
+
     heritageAudio.currentTime = 0;
-    audioStatus.textContent = "Audio guide stopped.";
+
+    audioStatus.textContent =
+        "Audio guide stopped.";
 }
 
 heritageAudio.addEventListener("ended", () => {
-    audioStatus.textContent = "Audio guide completed.";
+
+    audioStatus.textContent =
+        "Audio guide completed.";
+
 });
 
 heritageAudio.addEventListener("error", () => {
+
     audioStatus.textContent =
         "Audio file could not be loaded. Please check the audio folder.";
+
 });
 
-function showARMessage() {
-    document.getElementById("arStatus").textContent =
-        "AR scanner is a placeholder. Connect your Unity Android application to enable scanning.";
+
+/* =========================
+   UNITY AR DEEP LINK
+========================= */
+
+function openCharminarAR() {
+
+    const arStatus =
+        document.getElementById("arStatus");
+
+    arStatus.textContent =
+        "Opening Charminar AR application...";
+
+    /*
+       vhe://charminar
+       is received by Unity's DeepLinkHandler.
+
+       Unity then loads:
+       ARScene
+    */
+
+    window.location.href = "vhe://charminar";
+
+    /*
+       If the Unity application is not installed,
+       show a message after a short delay.
+    */
+
+    setTimeout(() => {
+
+        arStatus.textContent =
+            "If the AR application did not open, please install the Virtual Heritage Explorer APK.";
+
+    }, 2500);
 }
 
+
 window.addEventListener("pagehide", () => {
+
     heritageAudio.pause();
+
 });
+
 </script>
 
 </body>
