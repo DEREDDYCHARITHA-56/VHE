@@ -448,7 +448,6 @@ footer a {
 
 </header>
 
-
 <!-- HERO -->
 
 <div class="hero">
@@ -476,7 +475,6 @@ footer a {
 
 </div>
 
-
 <!-- FACTS -->
 
 <div class="facts">
@@ -502,7 +500,6 @@ footer a {
     </div>
 
 </div>
-
 
 <!-- HISTORY -->
 
@@ -542,7 +539,6 @@ footer a {
 
 </section>
 
-
 <!-- ARCHITECTURE -->
 
 <section class="architecture">
@@ -570,7 +566,6 @@ footer a {
     </div>
 
 </section>
-
 
 <!-- EIGHT-PHOTO GALLERY -->
 
@@ -660,7 +655,6 @@ footer a {
 
 </section>
 
-
 <!-- AUDIO GUIDE -->
 
 <section class="audio-section" id="audio">
@@ -689,14 +683,13 @@ footer a {
 
         </div>
 
-        <p id="audioStatus" style="margin-top:15px;font-size:12px;">
+        <p id="audioStatus" style="margin-top:15px;font-size:12px;" aria-live="polite">
             Press Play to listen to the English audio guide.
         </p>
 
     </div>
 
 </section>
-
 
 <!-- AR EXPERIENCE -->
 
@@ -734,7 +727,6 @@ footer a {
 
 </section>
 
-
 <!-- FOOTER -->
 
 <footer>
@@ -756,157 +748,51 @@ footer a {
 
 </footer>
 
-
 <!-- JAVASCRIPT -->
 
 <script>
+const heritageAudio = new Audio("audio/taj-mahal.mp3");
+heritageAudio.preload = "auto";
 
-const guideText = "Welcome to the Taj Mahal. Located in Agra, Uttar Pradesh, the Taj Mahal is one of India's most famous monuments. Mughal Emperor Shah Jahan commissioned this beautiful mausoleum in memory of his wife Mumtaz Mahal. Construction began in 1632. The monument is famous for its white marble, beautiful central dome, four minarets and intricate decorative work. Today, it is recognised as a UNESCO World Heritage Site and is admired by visitors from around the world.";
-
-let currentUtterance = null;
-let requestNumber = 0;
+const audioStatus = document.getElementById("audioStatus");
 
 function playGuide() {
+    audioStatus.textContent = "Loading Taj Mahal audio guide...";
 
-    if (!("speechSynthesis" in window)) {
-        document.getElementById("audioStatus").textContent =
-            "Text-to-speech is not supported in this browser.";
-        return;
-    }
-
-    requestNumber++;
-
-    const thisRequest = requestNumber;
-
-    speechSynthesis.cancel();
-
-    const status = document.getElementById("audioStatus");
-
-    status.textContent = "Loading English audio guide...";
-
-    function speakWhenReady() {
-
-        if (thisRequest !== requestNumber) return;
-
-        const voices = speechSynthesis.getVoices();
-
-        const englishVoice =
-            voices.find(voice =>
-                voice.lang &&
-                voice.lang.toLowerCase() === "en-in"
-            ) ||
-            voices.find(voice =>
-                voice.lang &&
-                voice.lang.toLowerCase().startsWith("en")
-            );
-
-        const speech = new SpeechSynthesisUtterance(guideText);
-
-        speech.lang = "en-IN";
-        speech.rate = 0.88;
-        speech.pitch = 1;
-        speech.volume = 1;
-
-        if (englishVoice) {
-            speech.voice = englishVoice;
-        }
-
-        speech.onstart = function() {
-
-            if (thisRequest === requestNumber) {
-                status.textContent =
-                    "English audio guide is playing...";
-            }
-
-        };
-
-        speech.onend = function() {
-
-            if (thisRequest === requestNumber) {
-                status.textContent =
-                    "Audio guide completed.";
-
-                currentUtterance = null;
-            }
-
-        };
-
-        speech.onerror = function() {
-
-            if (thisRequest === requestNumber) {
-                status.textContent =
-                    "Unable to play the audio guide. Please try again.";
-
-                currentUtterance = null;
-            }
-
-        };
-
-        currentUtterance = speech;
-
-        speechSynthesis.speak(speech);
-
-    }
-
-    if (speechSynthesis.getVoices().length > 0) {
-
-        speakWhenReady();
-
-    } else {
-
-        speechSynthesis.onvoiceschanged = function() {
-
-            if (thisRequest === requestNumber) {
-                speakWhenReady();
-            }
-
-        };
-
-        setTimeout(function() {
-
-            if (thisRequest === requestNumber && !currentUtterance) {
-                speakWhenReady();
-            }
-
-        }, 1500);
-
-    }
-
+    heritageAudio.play()
+        .then(() => {
+            audioStatus.textContent = "Playing Taj Mahal audio guide...";
+        })
+        .catch((error) => {
+            console.error("Audio error:", error);
+            audioStatus.textContent =
+                "Unable to play audio. Please try again.";
+        });
 }
-
 
 function stopGuide() {
-
-    requestNumber++;
-
-    if ("speechSynthesis" in window) {
-        speechSynthesis.cancel();
-    }
-
-    currentUtterance = null;
-
-    document.getElementById("audioStatus").textContent =
-        "Audio guide stopped.";
-
+    heritageAudio.pause();
+    heritageAudio.currentTime = 0;
+    audioStatus.textContent = "Audio guide stopped.";
 }
 
-
-function showARMessage() {
-
-    document.getElementById("arStatus").textContent =
-        "AR scanner is a placeholder. Connect your Unity Android application to enable scanning.";
-
-}
-
-
-window.addEventListener("beforeunload", function() {
-
-    if ("speechSynthesis" in window) {
-        speechSynthesis.cancel();
-    }
-
+heritageAudio.addEventListener("ended", () => {
+    audioStatus.textContent = "Audio guide completed.";
 });
 
+heritageAudio.addEventListener("error", () => {
+    audioStatus.textContent =
+        "Audio file could not be loaded. Please check the audio folder.";
+});
+
+function showARMessage() {
+    document.getElementById("arStatus").textContent =
+        "Connect your Unity Android application to enable the AR scanner.";
+}
+
+window.addEventListener("pagehide", () => {
+    heritageAudio.pause();
+});
 </script>
 
 </body>
